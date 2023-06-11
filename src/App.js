@@ -39,6 +39,7 @@ function App() {
             <AiOutlineHome size={25} color={theme.textColor}/>
             Home
           </NavLink>
+          <button onClick={()=>setTheme({themeColor: "white", textColor:"black"})}>Change Theme</button>
         </div>
       </div>
       <div className='main-body'>
