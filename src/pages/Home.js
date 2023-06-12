@@ -2,8 +2,6 @@ import { useDataContext } from "../context/dataContext";
 import { NavBar } from "../component/NavBar";
 
 export function Home(){
-    const {state} = useDataContext();
-    console.log(state);
     const {theme} = useDataContext();
 
     return (

@@ -12,6 +12,9 @@ export function ContextWrapper({children}){
             case "FOUND_USER_DETAILS":
                 localStorage.setItem("encodedToken", payload.encodedToken);
                 return {...state, isLoggedIn: true, foundUser: payload.foundUser};
+            case "SIGNUP_HANDLER":
+                localStorage.setItem("encodedToken", payload.encodedToken);
+                return {...state, isLoggedIn: true, foundUser: payload.createdUser};
             default:
                 return{...state};
         }

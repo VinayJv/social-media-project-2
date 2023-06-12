@@ -2,7 +2,7 @@ import { useDataContext } from "../context/dataContext";
 import { postLoginData } from "../services/authService";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useLocation,useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 export function Login() {
     const { dispatch } = useDataContext();
@@ -28,9 +28,19 @@ export function Login() {
         }
     }
 
+    const guestLoginHandler = async() => {
+        const data = await postLoginData("adarshbalika", "adarshBalika123");
+        const {foundUser, encodedToken} = await data.json();
+        dispatch({type:"FOUND_USER_DETAILS", payload:{foundUser, encodedToken}});
+        navigate("/explore");
+    };
+
     return (
     <div className="login-container">
-        <h1>Sign in to Utter</h1>
+        <div className="login-icon">
+            <img width="70" height="70" src="https://img.icons8.com/clouds/100/topic.png" alt="topic"/><span className="divider"></span><span style={{fontSize:"2rem"}}>UTTER</span>
+        </div>
+        <h1>Sign in</h1>
         <form className="login-form" onSubmit={formHandler}>
             <div>
                 <label htmlFor="username"></label>
@@ -41,6 +51,8 @@ export function Login() {
                 <input type="password" id="password" placeholder="Password" className="input-style" required></input>
             </div>
             <button type="submit" className="btn-style">Sign In</button>
+            <button className="btn-style" onClick={guestLoginHandler}>Guest Login</button>
+            <p>Don't have an account? <span style={{textDecorationLine:"underline",cursor:"pointer"}} onClick={()=>navigate("/signup")}>Sign Up</span></p>
         </form>
         <ToastContainer
         autoClose={1500}

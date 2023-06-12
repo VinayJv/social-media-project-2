@@ -43,6 +43,7 @@
 }
 
 .btn-style{
+  cursor: pointer;
   padding: 0.5rem;
   border: 2px solid var(--color-highlight);
   border-radius: var(--border-radius);
@@ -121,11 +122,24 @@
 
 /* Login Page */
 .login-container{
-  margin: 25% auto;
+  margin: 10% auto;
   width: fit-content;
-  padding: 1rem;
+  padding: 2rem;
   background-color: var(--color-highlight-2);
   border-radius: var(--border-radius);
+}
+.divider{
+  width: 40px;
+  height: 4px;
+  border-radius: var(--border-radius);
+  background-color: var(--color-highlight);
+  transform: rotate(90deg);
+}
+.login-icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
 }
 .login-form{
   display: flex;
@@ -148,18 +162,5 @@
 @media only screen and (max-width: 768px) {
   .App{
     width: 100%;
-  }
-  /* Login Responsive */
-  .login-container{
-    width: 96%;
-    height: fit-content;
-    margin: 0 auto;
-    align-self: center;
-    position: relative;
-    left: 0;
-    top: -10%;
-    padding: 1rem;
-    background-color: var(--color-highlight-2);
-    border-radius: var(--border-radius);
   }
 }
