@@ -1,8 +1,9 @@
-export const postLoginData = async(email,password) => {
+export const postLoginData = async(username,password) => {
     const response = await fetch("/api/auth/login",{
         method:"POST",
         body: JSON.stringify({
-            email,password
+            username,password
         })
     });
+    return response;
 };
