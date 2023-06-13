@@ -1,16 +1,23 @@
 import { NavBar } from "../component/NavBar";
 import { useDataContext } from "../context/dataContext";
-import { useState, useEffect } from "react";
+import { useEffect,useState } from "react";
+import { Loader } from "../component/Loader";
 
 export function Explore() {
-    const { theme, state } = useDataContext();
-    console.log(state);
+    const [loader,setLoader] = useState(true);
+    const { theme } = useDataContext();
+
+    useEffect(()=>{
+        setTimeout(()=>{
+          setLoader(false);
+        },1000)
+      },[]);
 
     return (
-    <div className="App" style={{ backgroundColor: theme.themeColor, color: theme.textColor }}>
+    <div className="main-page">
         <NavBar></NavBar>
-        <div className='main-body'>
-            <h1>This is Explore</h1>
-        </div>
+        {loader ? <Loader /> : <div className='main-body'>
+    <h1>This is Explore</h1>
+</div>}
     </div>);
 }

@@ -24,7 +24,7 @@ export function Login() {
         else if(data.status === 200){
             const {foundUser, encodedToken} = await data.json();
             dispatch({type:"FOUND_USER_DETAILS", payload:{foundUser, encodedToken}});
-            navigate("/explore");
+            navigate("/home");
         }
     }
 
@@ -32,7 +32,7 @@ export function Login() {
         const data = await postLoginData("adarshbalika", "adarshBalika123");
         const {foundUser, encodedToken} = await data.json();
         dispatch({type:"FOUND_USER_DETAILS", payload:{foundUser, encodedToken}});
-        navigate("/explore");
+        navigate("/home");
     };
 
     return (
@@ -51,9 +51,9 @@ export function Login() {
                 <input type="password" id="password" placeholder="Password" className="input-style" required></input>
             </div>
             <button type="submit" className="btn-style">Sign In</button>
+        </form>
             <button className="btn-style" onClick={guestLoginHandler}>Guest Login</button>
             <p>Don't have an account? <span style={{textDecorationLine:"underline",cursor:"pointer"}} onClick={()=>navigate("/signup")}>Sign Up</span></p>
-        </form>
         <ToastContainer
         autoClose={1500}
         hideProgressBar={true}

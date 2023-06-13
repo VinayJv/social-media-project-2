@@ -13,16 +13,16 @@ export function NavBar(){
       }
 
     return(
-    <div className='nav-bar'>
+    <div className='nav-bar' style={{borderRight:`1px solid ${theme.textColor}`}}>
       <div>
         <img width="70" height="70" src="https://img.icons8.com/clouds/100/topic.png" alt="topic" style={{marginBottom:"5rem"}}/>
-        <NavLink to="/explore" className='nav-links' style={{color: theme.textColor}}>
-          <MdTravelExplore size={25} color={theme.textColor}/>
-          Explore
-        </NavLink>
         <NavLink to="/home" className='nav-links' style={{color: theme.textColor}}>
           <AiOutlineHome size={25} color={theme.textColor}/>
           Home
+        </NavLink>
+        <NavLink to="/explore" className='nav-links' style={{color: theme.textColor}}>
+          <MdTravelExplore size={25} color={theme.textColor}/>
+          Explore
         </NavLink>
         <NavLink to="/settings" className='nav-links' style={{color: theme.textColor}}>
           <AiOutlineSetting size={25} color={theme.textColor}/>
