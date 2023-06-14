@@ -10,27 +10,47 @@ export const posts = [
   {
     _id: uuid(),
     content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+      "Star cluster NGC6193 & NGC 6188 emission nebula in Ara constellation.",
+    media: "https://pbs.twimg.com/media/FybIzdjWAAAq4l0?format=jpg&name=900x900",
     likes: {
-      likeCount: 0,
+      likeCount: 36,
       likedBy: [],
       dislikedBy: [],
     },
-    username: "adarshbalika",
+    comments: [],
+    username: "maiz_julio",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
   {
     _id: uuid(),
     content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.",
+      "A dying star can emit a jet surrounded by asymmetrical bubbles of material. The motion of this material through spacetime could also emit gravitational waves, researchers suggest.",
+    media: "https://www.sciencenews.org/wp-content/uploads/2023/06/060623_LG_cosmic-cocoon_feat-1030x580.jpg",
     likes: {
-      likeCount: 0,
+      likeCount: 15,
       likedBy: [],
       dislikedBy: [],
     },
-    username: "shubhamsoni",
+    comments: [],
+    username: "ScienceNews",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
+  {
+    _id: uuid(),
+    content:
+      "Netflix has revealed the first full trailer for The Witcher Season 3, which is coming to Netflix beginning on June 29. See the whole thing below.",
+    media: "https://sm.ign.com/t/ign_in/news/t/the-witche/the-witcher-season-3-gets-a-full-trailer-ahead-of-this-month_q9ph.1280.jpg",
+    likes: {
+      likeCount: 124,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [],
+    username: "ScienceNews",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  
 ];

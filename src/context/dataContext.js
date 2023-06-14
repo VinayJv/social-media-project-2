@@ -4,7 +4,7 @@ import { createContext, useContext, useState, useReducer } from "react";
 const DataContext = createContext(null);
 
 export function ContextWrapper({children}){
-    const [theme,setTheme] = useState({themeColor: "#15191d", textColor: "rgba(199, 237, 230, 1)"});
+    const [theme,setTheme] = useState({themeColor: "#15191d", textColor: "rgba(199, 237, 230, 1)",themeColor2:"#2c3e50", boxShadow: "-2px 4px 10px black"});
     
 
     const reducerFunction = (state, {type, payload}) => {

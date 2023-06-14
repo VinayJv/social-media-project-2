@@ -12,7 +12,7 @@ export function SignUp() {
             const data = await postSignUpData(event.target.elements[2].value, event.target.elements[3].value, event.target.elements[0].value, event.target.elements[1].value);
             const {createdUser, encodedToken} = await data.json();
                 dispatch({type:"SIGNUP_HANDLER", payload:{createdUser, encodedToken}});
-                navigate("/explore");
+                navigate("/home");
         }
         catch(error){
             console.log(error);

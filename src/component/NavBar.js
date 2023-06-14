@@ -9,7 +9,7 @@ export function NavBar(){
     const {theme, setTheme} = useDataContext();
 
     const changeTheme = (isChecked) => {
-        isChecked ? setTheme({themeColor: "#15191d", textColor: "rgba(199, 237, 230, 1)"}) : setTheme({themeColor: "white", textColor: "black"});
+        isChecked ? setTheme({themeColor: "rgb(21, 25, 29)", textColor: "rgba(199, 237, 230, 1)", themeColor2: "#2c3e50", boxShadow: "-2px 4px 10px black"}) : setTheme({themeColor: "#F9F7F7", textColor: "#112D4E",themeColor2: "#DBE2EF", boxShadow: "-2px 4px 5px #3F72AF"});
       }
 
     return(
