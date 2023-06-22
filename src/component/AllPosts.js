@@ -1,9 +1,19 @@
 import { useEffect, useState } from "react";
 import { getPost } from "../services/postServices";
 import { PostCard } from "./PostCard";
+import { useDataContext } from "../context/dataContext";
+
+
+
 
 export function AllPosts(){
-    const [postData,setPostData] = useState([]);
+    const {postData, setPostData} = useDataContext();
+
+    const filterData = () => {
+        let temp = [];
+        temp = postData.slice().sort((a,b)=>a.createdAt - b.createdAt);
+        return temp;
+    };
     
     const getPostData = async() => {
         const response = await getPost();
@@ -13,9 +23,9 @@ export function AllPosts(){
 
     useEffect(()=>{
         getPostData();
-    },[])
-
+    },[]);
+ 
     return(<div>
-        {postData.map((data)=><PostCard props={data} key={data._id}/>)}
+        {filterData().map((data)=><PostCard props={data} key={data._id}/>)}
     </div>)
 }

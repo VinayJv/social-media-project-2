@@ -71,6 +71,11 @@
   height: 60px;
   border-radius: 50%;
 }
+.user-image-2{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
 
 input[type="file"]{
   display: none;
@@ -144,7 +149,7 @@ input[type="file"]{
 
 /* Login Page */
 .login-container{
-  margin: 10% auto;
+  margin: 25vh auto;
   width: fit-content;
   padding: 2rem;
   background-color: var(--color-highlight-2);
@@ -171,11 +176,15 @@ input[type="file"]{
   gap: 1rem;
 }
 .input-style{
+  outline: none;
   width: 100%;
   height: 30px;
   border: none;
   padding-left: 0.5rem;
   border-radius: var(--border-radius);
+}
+.input-style:focus{
+  border: 2px solid var(--color-highlight);
 }
 
 /* Home Styling */
@@ -205,17 +214,81 @@ input[type="file"]{
 .post-inner-container{
   display: flex;
   flex-direction: column;
-  padding-left: 0.5rem;
+  padding-left: 1rem;
   width: 100%;
   height: fit-content;
 }
 .post-images{
-  width: 100%;
-  max-height: 20rem;
-  margin-top: 0.5rem;
+  width: 90%;
+  margin-top: 1rem;
   object-fit: cover;
-  border-radius: var(--border-radius);
 }
+.reaction-btn-container{
+  margin-top: 1rem;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.reaction-icons{
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.reaction-icons:hover{
+  scale: 1.25;
+}
+.reaction-icons:active{
+  scale: 1;
+}
+.comment-form-container{
+  position: absolute;
+  top: 110%;
+  width: 18rem;
+  max-height: 10rem;
+  padding: 0.5rem;
+  background-color: var(--color-highlight-2);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+.comment-form-container::-webkit-scrollbar {
+  width: 0px;
+}
+.comment-form{
+  width: 100%; 
+}
+.comment-form-header{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.comment-text-area{
+  border-radius: var(--border-radius);
+  border: none;
+  padding: 0.5rem;
+}
+.comment-btn{
+  padding: 0.4rem;
+  border: 1px solid var(--color-highlight);
+  color: var(--color-highlight);
+  border-radius: var(--border-radius);
+  background-color: transparent;
+}
+.comment-btn:active{
+  padding: 0.4rem;
+  border: 1px solid var(--color-highlight-2);
+  color: var(--color-highlight-2);
+  border-radius: var(--border-radius);
+  background-color: var(--color-highlight);
+}
+.comment{
+  display: flex;
+  padding: 0.5rem;
+  align-items: center;
+  gap: 0.6rem;
+}
+
 
 
 

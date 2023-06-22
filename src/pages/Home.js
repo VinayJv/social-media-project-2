@@ -5,10 +5,39 @@ import { Loader } from "../component/Loader";
 import { BiImages } from "react-icons/bi";
 import { AiOutlineSmile } from "react-icons/ai";
 import { AllPosts } from "../component/AllPosts";
+import { formatDate } from "../backend/utils/authUtils";
+import { v4 as uuid } from "uuid";
 
 export function Home() {
     const [loader, setLoader] = useState(true);
-    const { theme, state } = useDataContext();
+    const { theme, state, postData, setPostData } = useDataContext();
+    const [image,setImage] = useState({toggle: false, files:{} });
+
+    const postFormHandler = (event) => {
+        event.preventDefault();
+        const userPost = {
+            _id: uuid(),
+            content:
+              event.target.elements[0].value,
+            media: image.toggle ? window.URL.createObjectURL(image.files) : "",
+            likes: {
+              likeCount: 0,
+              likedBy: [],
+              dislikedBy: [],
+            },
+            comments: [],
+            username: state.foundUser.username,
+            createdAt: formatDate(),
+            updatedAt: formatDate(),
+          }
+          setPostData([userPost, ...postData]);
+          event.target.reset();
+          setImage({...image, toggle: false});
+    };
+
+    const imageChangeHandler = (event) => {
+        setImage({toggle: true, files: event.target.files[0]});
+    };
 
     useEffect(() => {
         setTimeout(() => {
@@ -22,9 +51,9 @@ export function Home() {
             {loader ? <Loader /> : <div className='main-body' style={{borderRight:`1px solid ${theme.textColor}`}}>
                 <h1 style={{borderBottom:`1px solid ${theme.textColor}`, padding:"1rem", position:"fixed", width:"47.9%",backgroundColor:theme.themeColor2}}>Home</h1>
                 <div>
-                    <div className="post-container" style={{backgroundColor: theme.themeColor2, boxShadow: theme.boxShadow, marginTop:"5rem"}}>
+                    <div className="post-container" style={{backgroundColor: theme.themeColor2, boxShadow: theme.boxShadow, marginTop:"6rem"}}>
                         <img src={state.foundUser.userImage} alt="user" className="user-image"></img>
-                        <form className="form">
+                        <form className="form" onSubmit={postFormHandler}>
                             <label htmlFor="post-message"> 
                                 <textarea id="post-message" type="text" placeholder="Write something interesting..." className="post-textarea"></textarea>
                             </label>
@@ -32,7 +61,7 @@ export function Home() {
                                 <div>
                                     <label className="custom-input">
                                         <BiImages size={30}/>
-                                        <input type="file" multiple accept="image/*"></input>
+                                        <input type="file" multiple accept="image/*" onChange={imageChangeHandler}></input>
                                     </label>
                                     <AiOutlineSmile size={30}/>
                                 </div>
