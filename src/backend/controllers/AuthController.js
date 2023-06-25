@@ -40,7 +40,7 @@ export const signupHandler = function (schema, request) {
       followers: [],
       following: [],
       bookmarks: [],
-      userImage: "https://th.bing.com/th/id/OIP.z4no5tqp2ryBdMMD5NU9OgAAAA?pid=ImgDet&rs=1",
+      userImage: "https://punchstick.com/wp-content/uploads/2017/12/default-user-image-300x300.png",
     };
     const createdUser = schema.users.create(newUser);
     const encodedToken = sign(

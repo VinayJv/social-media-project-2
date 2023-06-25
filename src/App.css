@@ -289,6 +289,26 @@ input[type="file"]{
   align-items: center;
   gap: 0.6rem;
 }
+.follow-section-container{
+  width: 30%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.follow-user{
+  max-height: 24.5rem;
+  margin-top: 6rem;
+  padding: 1rem;
+  overflow: hidden;
+}
+.follow-btn{
+  width: 6rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.1s;
+}
+.follow-btn:hover{
+  scale: 1.1;
+  cursor: pointer;
+}
 
 
 

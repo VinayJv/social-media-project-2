@@ -7,6 +7,7 @@ import { AiOutlineSmile } from "react-icons/ai";
 import { AllPosts } from "../component/AllPosts";
 import { formatDate } from "../backend/utils/authUtils";
 import { v4 as uuid } from "uuid";
+import { SuggestedUser } from "../component/SuggestedUsers";
 
 export function Home() {
     const [loader, setLoader] = useState(true);
@@ -56,7 +57,7 @@ export function Home() {
                         <img src={state.foundUser.userImage} alt="user" className="user-image"></img>
                         <form className="form" onSubmit={postFormHandler}>
                             <label htmlFor="post-message"> 
-                                <textarea id="post-message" type="text" placeholder="Write something interesting..." className="post-textarea"></textarea>
+                                <textarea id="post-message" type="text" required placeholder="Write something interesting..." className="post-textarea"></textarea>
                             </label>
                             <div className="post-btn-container">
                                 <div>
@@ -75,5 +76,15 @@ export function Home() {
                     <AllPosts />
                 </div>
             </div>}
+            <div className="follow-section-container">
+                <div className="follow-user" style={{backgroundColor: theme.themeColor2, borderRadius: "5px", boxShadow: theme.boxShadow}}>
+                    <div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
+                        <h2>Who To Follow ?</h2><span>View More</span>
+                    </div>
+                    <div style={{display: "flex", flexDirection: "column-reverse"}}>
+                        {state.allUsers.map((user)=><SuggestedUser data={user}/>)}
+                    </div>
+                </div>
+            </div>
         </div>);
 }
