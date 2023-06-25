@@ -32,6 +32,7 @@
 .main-body{
   width: 60%;
   overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 .loader-container{
   width: 100%;

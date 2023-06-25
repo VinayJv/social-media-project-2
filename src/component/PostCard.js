@@ -34,9 +34,9 @@ export function PostCard({ props: { _id, content, media, likes: { likeCount, lik
 
 
     return (<div className="post-container" style={{ backgroundColor: theme.themeColor2, boxShadow: theme.boxShadow }}>
-        <img src={postedBy.userImage} alt="" className="user-image"></img>
+        <img src={postedBy?.userImage || state.foundUser.userImage} alt="" className="user-image"></img>
         <div className="post-inner-container">
-            <p style={{ fontSize: "1.3rem" }}>{postedBy.firstName} {postedBy.lastName}</p>
+            <p style={{ fontSize: "1.3rem" }}>{postedBy?.firstName || state.foundUser.name} {postedBy?.lastName || ""}</p>
             <p style={{ color: "gray" }}>@{username}</p>
             <p style={{ fontSize: "1.1rem", marginTop: "1rem" }}>{content}</p>
             <img src={media} className="post-images" alt=""></img>
@@ -47,9 +47,9 @@ export function PostCard({ props: { _id, content, media, likes: { likeCount, lik
                 {dislikeData.isDisliked ? <AiFillDislike size={30} color="skyblue" className="reaction-icons" onClick={() => setDislikeData({ isDisliked: false, dislikeCount: dislikeData.dislikeCount - 1 })} /> : <AiOutlineDislike size={30} className="reaction-icons" color={theme.textColor} onClick={() => setDislikeData({ isDisliked: true, dislikeCount: dislikeData.dislikeCount + 1 })} />}
                 <span>{dislikeData.dislikeCount}</span>
 
-                <div style={{ display: "flex", position: "relative" }}>
-                    <AiOutlineMessage size={30} className="reaction-icons" color={theme.textColor} onClick={() => setShowForm(!showForm)} />
-                    <span style={{ alignSelf: "center", marginLeft: "1rem" }}>{commentsData.length}</span>
+                <AiOutlineMessage size={30} className="reaction-icons" color={theme.textColor} onClick={() => setShowForm(!showForm)} />
+                <span style={{ alignSelf: "center", marginLeft: "1rem" }}>{commentsData.length}</span>
+                <div style={{ display: "flex", position: "relative"}}>
                     <div style={{ display: showForm ? "flex" : "none", backgroundColor: theme.themeColor2, boxShadow: theme.boxShadow, border: `1px solid ${theme.textColor}` }} className="comment-form-container">
                         <form className="comment-form" onSubmit={addComment}>
                             <div className="comment-form-header">

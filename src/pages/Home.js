@@ -12,6 +12,7 @@ export function Home() {
     const [loader, setLoader] = useState(true);
     const { theme, state, postData, setPostData } = useDataContext();
     const [image,setImage] = useState({toggle: false, files:{} });
+    console.log(state);
 
     const postFormHandler = (event) => {
         event.preventDefault();
