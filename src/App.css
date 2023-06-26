@@ -30,12 +30,12 @@
   height: 99.99vh;
 }
 .main-body{
-  width: 60%;
+  width: 70%;
   overflow-y: scroll;
   scroll-behavior: smooth;
 }
 .loader-container{
-  width: 100%;
+  width: 70%;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -85,6 +85,11 @@ input[type="file"]{
   cursor: pointer;
   width: fit-content;
   margin-right: 0.5rem;
+}
+.header-main-container{
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 
@@ -290,18 +295,19 @@ input[type="file"]{
   gap: 0.6rem;
 }
 .follow-section-container{
-  width: 30%;
-  margin: 0 auto;
   padding: 1rem;
 }
 .follow-user{
+  width: fit-content;
   max-height: 24.5rem;
   margin-top: 6rem;
   padding: 1rem;
   overflow: hidden;
 }
 .follow-btn{
+  border-radius: var(--border-radius);
   width: 6rem;
+  margin-left: auto;
   padding: 0.5rem 1rem;
   transition: all 0.1s;
 }

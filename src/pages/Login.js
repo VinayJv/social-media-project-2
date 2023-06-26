@@ -5,15 +5,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router";
 
 export function Login() {
-    const { dispatch } = useDataContext();
+    const { dispatch, notify } = useDataContext();
     const navigate = useNavigate();
-
-    const notify = (message) => {
-        toast(message,{
-            position: "bottom-right",
-            className: "toast-message"
-        });
-    };
 
     const formHandler = async(event) => {
         event.preventDefault();
@@ -32,6 +25,7 @@ export function Login() {
         const data = await postLoginData("adarshbalika", "adarshBalika123");
         const {foundUser, encodedToken} = await data.json();
         dispatch({type:"FOUND_USER_DETAILS", payload:{foundUser, encodedToken}});
+        notify("Login Successfull");
         navigate("/home");
     };
 
@@ -54,10 +48,5 @@ export function Login() {
         </form>
             <button className="btn-style" onClick={guestLoginHandler}>Guest Login</button>
             <p>Don't have an account? <span style={{textDecorationLine:"underline",cursor:"pointer"}} onClick={()=>navigate("/signup")}>Sign Up</span></p>
-        <ToastContainer
-        autoClose={1500}
-        hideProgressBar={true}
-        pauseOnHover={false}
-        />
     </div>)
 }

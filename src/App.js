@@ -7,6 +7,7 @@ import { Auth } from './component/Auth';
 import { Explore } from './pages/Explore';
 import { Settings } from './pages/Settings';
 import { SignUp } from './pages/SignUp';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const {theme} = useDataContext();
@@ -19,11 +20,16 @@ function App() {
           <Route path="/" element={<Navigate to="/login"></Navigate>}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/signup' element={<SignUp />}></Route>
-          
+
           <Route path='/settings' element={<Auth><Settings /></Auth>}></Route>
           <Route path='/explore' element={<Auth><Explore /></Auth>}></Route>
           <Route path='/home' element={<Auth><Home /></Auth>}></Route>
         </Routes>
+        <ToastContainer
+        autoClose={1500}
+        hideProgressBar={true}
+        pauseOnHover={false}
+        />
     </div>
   );
 }

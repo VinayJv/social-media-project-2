@@ -1,11 +1,21 @@
 import { createContext, useContext, useState, useReducer, useEffect } from "react";
 import { getUserAll } from "../services/userServices";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const DataContext = createContext(null);
 
 export function ContextWrapper({children}){
     const [theme,setTheme] = useState({themeColor: "#15191d", textColor: "rgba(199, 237, 230, 1)",themeColor2:"#2c3e50", boxShadow: "-2px 4px 10px black"});
     const [postData,setPostData] = useState([]);
+
+    const notify = (message) => {
+        toast(message,{
+            position: "bottom-right",
+            className: "toast-message"
+        });
+    };
+    
 
     const getUsersAll = async (name) => {
         const response = await getUserAll();
@@ -39,7 +49,7 @@ export function ContextWrapper({children}){
     });
 
     return(
-        <DataContext.Provider value={{ state, dispatch, theme, setTheme, postData, setPostData}}>
+        <DataContext.Provider value={{ state, dispatch, theme, setTheme, postData, setPostData, notify}}>
             {children}
         </DataContext.Provider>
     )

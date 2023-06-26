@@ -5,16 +5,16 @@ import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineMessage } from "react-icons/ai";
 import { AiFillDislike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
-import { getUserAll } from "../services/userServices";
 import { PostComments } from "./PostComments";
 
-export function PostCard({ props: { _id, content, media, likes: { likeCount, likedBy, dislikedBy }, comments, username } }) {
+export function PostCard({ props: { _id, content, media, likes: { likeCount, likedBy, dislikedBy }, comments, username }}) {
     const { theme, state } = useDataContext();
     const [postedBy, setPostedBy] = useState({});
     const [likedData, setLikedData] = useState({ isLiked: false, likeCount: likeCount });
     const [dislikeData, setDislikeData] = useState({ isDisliked: false, dislikeCount: dislikedBy.length });
     const [showForm, setShowForm] = useState(false);
     const [commentsData,setCommentsData] = useState(comments);
+
 
     const addComment = (event) => {
         event.preventDefault();
@@ -48,7 +48,7 @@ export function PostCard({ props: { _id, content, media, likes: { likeCount, lik
                 <span>{dislikeData.dislikeCount}</span>
 
                 <AiOutlineMessage size={30} className="reaction-icons" color={theme.textColor} onClick={() => setShowForm(!showForm)} />
-                <span style={{ alignSelf: "center", marginLeft: "1rem" }}>{commentsData.length}</span>
+                <span style={{ alignSelf: "center"}}>{commentsData.length}</span>
                 <div style={{ display: "flex", position: "relative"}}>
                     <div style={{ display: showForm ? "flex" : "none", backgroundColor: theme.themeColor2, boxShadow: theme.boxShadow, border: `1px solid ${theme.textColor}` }} className="comment-form-container">
                         <form className="comment-form" onSubmit={addComment}>

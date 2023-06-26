@@ -7,7 +7,7 @@ import { AiOutlineSmile } from "react-icons/ai";
 import { AllPosts } from "../component/AllPosts";
 import { formatDate } from "../backend/utils/authUtils";
 import { v4 as uuid } from "uuid";
-import { SuggestedUser } from "../component/SuggestedUsers";
+import { SuggestedUserCard } from "../component/SuggestedUserCard";
 
 export function Home() {
     const [loader, setLoader] = useState(true);
@@ -48,12 +48,14 @@ export function Home() {
     }, []);
 
     return (
-        <div className="main-page" style={{borderRight: `1px solid ${theme.textColor}`}}>
+        <div className="main-page">
             <NavBar></NavBar>
-            {loader ? <Loader /> : <div className='main-body' style={{borderRight:`1px solid ${theme.textColor}`}}>
-                <h1 style={{borderBottom:`1px solid ${theme.textColor}`, padding:"1rem", position:"fixed", width:"47.9%",backgroundColor:theme.themeColor2}}>Home</h1>
+            {loader ? <Loader /> : <div className='main-body' style={{borderRight: `1px solid ${theme.textColor}`}}>
+                <div style={{backgroundColor:theme.themeColor2, borderBottom:`1px solid ${theme.textColor}`}} className="header-main-container">
+                    <h1 style={{padding:"1rem"}}>Home</h1>
+                </div>
                 <div>
-                    <div className="post-container" style={{backgroundColor: theme.themeColor2, boxShadow: theme.boxShadow, marginTop:"6rem"}}>
+                    <div className="post-container" style={{backgroundColor: theme.themeColor2, boxShadow: theme.boxShadow, marginTop:"2rem"}}>
                         <img src={state.foundUser.userImage} alt="user" className="user-image"></img>
                         <form className="form" onSubmit={postFormHandler}>
                             <label htmlFor="post-message"> 
@@ -76,15 +78,6 @@ export function Home() {
                     <AllPosts />
                 </div>
             </div>}
-            <div className="follow-section-container">
-                <div className="follow-user" style={{backgroundColor: theme.themeColor2, borderRadius: "5px", boxShadow: theme.boxShadow}}>
-                    <div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
-                        <h2>Who To Follow ?</h2><span>View More</span>
-                    </div>
-                    <div style={{display: "flex", flexDirection: "column-reverse"}}>
-                        {state.allUsers.map((user)=><SuggestedUser data={user}/>)}
-                    </div>
-                </div>
-            </div>
+            <SuggestedUserCard />
         </div>);
 }

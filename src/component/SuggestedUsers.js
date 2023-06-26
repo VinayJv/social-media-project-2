@@ -7,7 +7,7 @@ export function SuggestedUser({data}){
     return (
     <div style={{display: "flex", alignItems: "center", marginTop: "1rem"}}>
         <img src={data.userImage} className="user-image-2" alt=""></img>
-        <div style={{marginLeft: "0.5rem", width: "60%"}}>
+        <div style={{margin: "0rem 0.5rem"}}>
             <p>{data.firstName} {data.lastName}</p>
             <p>@{data.username}</p>
         </div>
