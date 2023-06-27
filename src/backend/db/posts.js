@@ -10,7 +10,7 @@ export const posts = [
   {
     _id: uuid(),
     content:
-      "Star cluster NGC6193 & NGC 6188 emission nebula in Ara constellation.",
+      "Star cluster NGC6193 & NGC 6188 emission nebula in Ara constellation. 🌟🌟",
     media: "https://pbs.twimg.com/media/FybIzdjWAAAq4l0?format=jpg&name=900x900",
     likes: {
       likeCount: 36,
@@ -58,7 +58,7 @@ export const posts = [
   {
     _id: uuid(),
     content:
-      "Cyclone Biparjoy perfecting its twister moves!",
+      "Cyclone Biparjoy perfecting its twister moves!🌀",
     media: "https://pbs.twimg.com/media/Fypb0mfXwAETjos?format=jpg&name=medium",
     likes: {
       likeCount: 20,
@@ -103,5 +103,36 @@ export const posts = [
     updatedAt: formatDate(),
     isBookmarked: false,
   },
-  
+  {
+    _id: uuid(),
+    content:
+      "M31 Andromeda galaxy. 🔭",
+    media: "https://pbs.twimg.com/media/Fzm0wbvXoAMba4f?format=jpg&name=medium",
+    likes: {
+      likeCount: 45,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [{commentBy: "ScienceNews", comment: "Beautiful"},{commentBy: "pranjalexplores", comment: "Can't Unsee This"}],
+    username: "maiz_julio",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+    isBookmarked: false,
+  },
+  {
+    _id: uuid(),
+    content:
+      "Around 100 artists left the film before it was finished.",
+    media: "https://sm.ign.com/t/ign_in/news/s/spider-man/spider-man-across-the-spider-verse-several-animators-claim-t_dkh7.1280.jpg",
+    likes: {
+      likeCount: 4,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [],
+    username: "IGN_IN",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+    isBookmarked: false,
+  },
 ];
