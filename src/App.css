@@ -302,6 +302,7 @@ input[type="file"]{
   max-height: 24.5rem;
   margin-top: 6rem;
   overflow: scroll;
+  scroll-behavior: smooth;
 }
 .follow-user::-webkit-scrollbar {
   width: 0px;
