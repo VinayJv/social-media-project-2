@@ -3,7 +3,7 @@ import { useDataContext } from "../context/dataContext";
 import { useNavigate } from "react-router";
 
 export function SignUp() {
-    const { dispatch } = useDataContext();
+    const { dispatch, notify } = useDataContext();
     const navigate = useNavigate();
 
     const signUpFormHandler = async(event) => {
@@ -12,6 +12,7 @@ export function SignUp() {
             const data = await postSignUpData(event.target.elements[2].value, event.target.elements[3].value, event.target.elements[0].value, event.target.elements[1].value);
             const {createdUser, encodedToken} = await data.json();
                 dispatch({type:"SIGNUP_HANDLER", payload:{createdUser, encodedToken}});
+                notify("Account Created");
                 navigate("/home");
         }
         catch(error){

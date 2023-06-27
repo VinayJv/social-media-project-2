@@ -4,6 +4,7 @@ import { AiOutlineHome } from "react-icons/ai";
 import { MdTravelExplore } from "react-icons/md";
 import { ToggleButton } from '../component/ToggleButton';
 import { AiOutlineSetting } from "react-icons/ai";
+import { BsBookmarkCheck } from "react-icons/bs";
 
 export function NavBar(){
     const {theme, setTheme} = useDataContext();
@@ -24,13 +25,17 @@ export function NavBar(){
           <MdTravelExplore size={25} color={theme.textColor}/>
           Explore
         </NavLink>
+        <NavLink to="/bookmarks" className='nav-links' style={{color: theme.textColor}}>
+          <BsBookmarkCheck size={25} color={theme.textColor}/>
+          Bookmarks
+        </NavLink>
         <NavLink to="/settings" className='nav-links' style={{color: theme.textColor}}>
           <AiOutlineSetting size={25} color={theme.textColor}/>
           Settings
         </NavLink>
       </div>
       <div className='last-child'>
-        <ToggleButton label="" toggle={true} onClick={changeTheme}></ToggleButton>
+        <ToggleButton label="" onClick={changeTheme}></ToggleButton>
       </div>
     </div>);
 }

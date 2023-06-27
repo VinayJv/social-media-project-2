@@ -9,6 +9,8 @@ const DataContext = createContext(null);
 export function ContextWrapper({children}){
     const [theme,setTheme] = useState({themeColor: "#15191d", textColor: "rgba(199, 237, 230, 1)",themeColor2:"#2c3e50", boxShadow: "-2px 4px 10px black"});
     const [postData,setPostData] = useState([]);
+    const [bookmarksData,setBookmarksData] = useState([]);
+    const [isToggled, setIsToggled] = useState(true); // Theme Toggle
 
     const notify = (message) => {
         toast(message,{
@@ -56,7 +58,7 @@ export function ContextWrapper({children}){
     });
 
     return(
-        <DataContext.Provider value={{ state, dispatch, theme, setTheme, postData, setPostData, notify}}>
+        <DataContext.Provider value={{ state, dispatch, theme, setTheme, postData, setPostData, notify, isToggled, setIsToggled, bookmarksData,setBookmarksData}}>
             {children}
         </DataContext.Provider>
     )

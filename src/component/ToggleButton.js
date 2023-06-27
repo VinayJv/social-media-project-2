@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useDataContext } from "../context/dataContext";
 
-export function ToggleButton({ label, toggle, onClick }) {
-    const [isToggled, setIsToggled] = useState(toggle);
+export function ToggleButton({ label, onClick }) {
+    const {isToggled, setIsToggled} = useDataContext();
 
     const callback = () => {
         setIsToggled(!isToggled);

@@ -6,14 +6,16 @@ import { AiOutlineMessage } from "react-icons/ai";
 import { AiFillDislike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 import { PostComments } from "./PostComments";
+import { BsBookmark } from "react-icons/bs";
+import { BsBookmarkFill } from "react-icons/bs";
 
-export function PostCard({ props: { _id, content, media, likes: { likeCount, likedBy, dislikedBy }, comments, username }}) {
+export function PostCard({ props: { _id, content, media, likes: { likeCount, likedBy, dislikedBy }, comments, username, isBookmarked }}) {
     const { theme, state, postData, setPostData } = useDataContext();
     const [postedBy, setPostedBy] = useState({});
     const [likedByData, setLikedBy] = useState(likedBy);
     const [dislikedByData, setDislikedBy] = useState(dislikedBy);
     const [likedData, setLikedData] = useState({likeCount: likeCount});
-    const [dislikeData, setDislikeData] = useState({dislikeCount: dislikedBy.length });
+    const [dislikeData, setDislikeData] = useState({dislikeCount: dislikedBy.length});
     const [showForm, setShowForm] = useState(false);
     const [commentsData,setCommentsData] = useState(comments);
     
@@ -116,6 +118,11 @@ export function PostCard({ props: { _id, content, media, likes: { likeCount, lik
                             }
                         </div>
                     </div>
+                    {isBookmarked ? <BsBookmarkFill size={25} className="reaction-icons" color={theme.textColor} onClick={()=>{
+                    setPostData([...postData] , (postData[findIndex()].isBookmarked = !postData[findIndex()].isBookmarked));
+                }}/> : <BsBookmark size={25} className="reaction-icons" color={theme.textColor} onClick={()=>{
+                    setPostData([...postData] , (postData[findIndex()].isBookmarked = !postData[findIndex()].isBookmarked));
+                }}/>}
                 </div>
             </div>
         </div>

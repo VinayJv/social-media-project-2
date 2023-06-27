@@ -21,6 +21,7 @@ export const posts = [
     username: "maiz_julio",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    isBookmarked: false,
   },
   {
     _id: uuid(),
@@ -36,6 +37,7 @@ export const posts = [
     username: "ScienceNews",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    isBookmarked: false,
   },
   {
     _id: uuid(),
@@ -51,6 +53,7 @@ export const posts = [
     username: "IGN_IN",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    isBookmarked: false,
   },
   {
     _id: uuid(),
@@ -66,6 +69,7 @@ export const posts = [
     username: "pranjalexplores",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    isBookmarked: false,
   },
   {
     _id: uuid(),
@@ -81,6 +85,7 @@ export const posts = [
     username: "WholesomeMeme",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    isBookmarked: false,
   },
   {
     _id: uuid(),
@@ -96,6 +101,7 @@ export const posts = [
     username: "ScienceNews",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    isBookmarked: false,
   },
   
 ];
