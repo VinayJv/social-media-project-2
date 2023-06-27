@@ -8,20 +8,56 @@ import { AiOutlineDislike } from "react-icons/ai";
 import { PostComments } from "./PostComments";
 
 export function PostCard({ props: { _id, content, media, likes: { likeCount, likedBy, dislikedBy }, comments, username }}) {
-    const { theme, state } = useDataContext();
+    const { theme, state, postData, setPostData } = useDataContext();
     const [postedBy, setPostedBy] = useState({});
-    const [likedData, setLikedData] = useState({ isLiked: false, likeCount: likeCount });
-    const [dislikeData, setDislikeData] = useState({ isDisliked: false, dislikeCount: dislikedBy.length });
+    const [likedByData, setLikedBy] = useState(likedBy);
+    const [dislikedByData, setDislikedBy] = useState(dislikedBy);
+    const [likedData, setLikedData] = useState({likeCount: likeCount});
+    const [dislikeData, setDislikeData] = useState({dislikeCount: dislikedBy.length });
     const [showForm, setShowForm] = useState(false);
     const [commentsData,setCommentsData] = useState(comments);
+    
+    const findIndex = () => postData.findIndex((post)=>post._id === _id);
+
+    const isLikedByUser = () => {
+        const index = likedByData.findIndex((username)=>username === state.foundUser.username);
+        if(index === -1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    const isDislikedByUser = () => {
+        const index = dislikedByData.findIndex((username)=>username === state.foundUser.username);
+        if(index === -1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 
 
     const addComment = (event) => {
         event.preventDefault();
         const userComment = {commentBy: state.foundUser.username, comment: event.target.elements[0].value};
         setCommentsData([...commentsData, userComment]);
+        setPostData([...postData], (postData[findIndex()].comments.push(userComment)));
         event.target.reset();
         setShowForm(false);
+    }
+
+    const removeUserLike = () => {
+        const filteredArray = likedByData.filter((username)=>!username===state.foundUser.username);
+        setLikedBy(filteredArray);
+        setPostData([...postData],(postData[findIndex()].likes.likeCount = postData[findIndex()].likes.likeCount - 1),(postData[findIndex()].likes.likedBy = filteredArray));
+    }
+    const removeUserDislike = () => {
+        const filteredArray = dislikedByData.filter((username)=>!username===state.foundUser.username);
+        setDislikedBy(filteredArray);
+        setPostData([...postData],(postData[findIndex()].likes.dislikedBy = filteredArray));
     }
 
     const getUserData = (name) => {
@@ -41,10 +77,23 @@ export function PostCard({ props: { _id, content, media, likes: { likeCount, lik
             <p style={{ fontSize: "1.1rem", marginTop: "1rem" }}>{content}</p>
             <img src={media} className="post-images" alt=""></img>
             <div className="reaction-btn-container">
-                {likedData.isLiked ? <AiFillHeart size={30} color="red" className="reaction-icons" onClick={() => setLikedData({ isLiked: false, likeCount: likedData.likeCount - 1 })} /> : <AiOutlineHeart size={30} className="reaction-icons" color={theme.textColor} onClick={() => setLikedData({ isLiked: true, likeCount: likedData.likeCount + 1 })} />}
+                {isLikedByUser() ? <AiFillHeart size={30} color="red" className="reaction-icons" onClick={() =>{
+                    setLikedData({likeCount: likedData.likeCount - 1 });
+                    removeUserLike();
+                }} /> : <AiOutlineHeart size={30} className="reaction-icons" color={theme.textColor} onClick={() =>{
+                    setLikedData({likeCount: likedData.likeCount + 1 });
+                    setLikedBy([...likedBy, state.foundUser.username]);
+                    setPostData([...postData], (postData[findIndex()].likes.likedBy.push(state.foundUser.username)), (postData[findIndex()].likes.likeCount = postData[findIndex()].likes.likeCount + 1));
+                }} />}
                 <span>{likedData.likeCount}</span>
 
-                {dislikeData.isDisliked ? <AiFillDislike size={30} color="skyblue" className="reaction-icons" onClick={() => setDislikeData({ isDisliked: false, dislikeCount: dislikeData.dislikeCount - 1 })} /> : <AiOutlineDislike size={30} className="reaction-icons" color={theme.textColor} onClick={() => setDislikeData({ isDisliked: true, dislikeCount: dislikeData.dislikeCount + 1 })} />}
+                {isDislikedByUser() ? <AiFillDislike size={30} color="skyblue" className="reaction-icons" onClick={() =>{
+                     setDislikeData({dislikeCount: dislikeData.dislikeCount - 1 });
+                     removeUserDislike();
+                }} /> : <AiOutlineDislike size={30} className="reaction-icons" color={theme.textColor} onClick={() =>{
+                    setDislikeData({dislikeCount: dislikeData.dislikeCount + 1 });
+                    setPostData([...postData], (postData[findIndex()].likes.dislikedBy.push(state.foundUser.username)));
+                }} />}
                 <span>{dislikeData.dislikeCount}</span>
 
                 <AiOutlineMessage size={30} className="reaction-icons" color={theme.textColor} onClick={() => setShowForm(!showForm)} />

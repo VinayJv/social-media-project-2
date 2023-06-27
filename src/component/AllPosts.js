@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { getPost } from "../services/postServices";
 import { PostCard } from "./PostCard";
 import { useDataContext } from "../context/dataContext";
 
@@ -14,6 +13,9 @@ export function AllPosts(){
         temp = postData.slice().sort((a,b)=>a.createdAt - b.createdAt);
         return temp;
     };
+
+    
+
     return(<div>
         {filterData().map((data)=><PostCard props={data} key={data._id}/>)}
     </div>)

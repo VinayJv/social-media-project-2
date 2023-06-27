@@ -8,6 +8,7 @@ import { SuggestedUserCard } from "../component/SuggestedUserCard";
 export function Explore() {
   const [loader, setLoader] = useState(true);
   const { theme, state } = useDataContext();
+  console.log(state);
 
   useEffect(() => {
     setTimeout(() => {

@@ -8,7 +8,7 @@ export function SuggestedUserCard(){
     <div className="follow-user" style={{backgroundColor: theme.themeColor2, borderRadius: "5px", boxShadow: theme.boxShadow}}>
        <h2>Suggested Users</h2>
         <div style={{display: "flex", flexDirection: "column-reverse"}}>
-            {state.allUsers.map((user)=><SuggestedUser data={user}/>)}
+            {state.allUsers.map((user,index)=><SuggestedUser data={user} key={index}/>)}
         </div>
     </div>
 </div>)

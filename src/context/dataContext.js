@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useReducer, useEffect } from "reac
 import { getUserAll } from "../services/userServices";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { getPost } from "../services/postServices";
 
 const DataContext = createContext(null);
 
@@ -16,6 +17,11 @@ export function ContextWrapper({children}){
         });
     };
     
+    const getPostData = async() => {
+        const response = await getPost();
+        const data = await response.json();
+        setPostData(data.posts); 
+    }
 
     const getUsersAll = async (name) => {
         const response = await getUserAll();
@@ -24,6 +30,7 @@ export function ContextWrapper({children}){
     }
 
     useEffect(()=>{
+        getPostData();
         getUsersAll();
     },[])
 
