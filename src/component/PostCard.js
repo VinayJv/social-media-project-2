@@ -8,9 +8,10 @@ import { AiOutlineDislike } from "react-icons/ai";
 import { PostComments } from "./PostComments";
 import { BsBookmark } from "react-icons/bs";
 import { BsBookmarkFill } from "react-icons/bs";
+import { MdVerified } from "react-icons/md";
 
 export function PostCard({ props: { _id, content, media, likes: { likeCount, likedBy, dislikedBy }, comments, username, isBookmarked }}) {
-    const { theme, state, postData, setPostData } = useDataContext();
+    const { theme, state, postData, setPostData, userData } = useDataContext();
     const [postedBy, setPostedBy] = useState({});
     const [likedByData, setLikedBy] = useState(likedBy);
     const [dislikedByData, setDislikedBy] = useState(dislikedBy);
@@ -63,7 +64,7 @@ export function PostCard({ props: { _id, content, media, likes: { likeCount, lik
     }
 
     const getUserData = (name) => {
-        setPostedBy(() => state.allUsers.find((user) => user.username === name));
+        setPostedBy(() => userData.find((user) => user.username === name));
     }
 
     useEffect(() => {
@@ -74,7 +75,9 @@ export function PostCard({ props: { _id, content, media, likes: { likeCount, lik
     return (<div className="post-container" style={{ backgroundColor: theme.themeColor2, boxShadow: theme.boxShadow }}>
         <img src={postedBy?.userImage || state.foundUser.userImage} alt="" className="user-image"></img>
         <div className="post-inner-container">
-            <p style={{ fontSize: "1.3rem" }}>{postedBy?.firstName || state.foundUser.name} {postedBy?.lastName || ""}</p>
+            <div style={{display: "flex", alignItems: "center", gap: "0.3rem"}}>
+                <p style={{ fontSize: "1.3rem" }}>{postedBy?.firstName || state.foundUser.name} {postedBy?.lastName || ""}</p>
+            </div>
             <p style={{ color: "gray" }}>@{username}</p>
             <p style={{ fontSize: "1.1rem", marginTop: "1rem" }}>{content}</p>
             <img src={media} className="post-images" alt=""></img>

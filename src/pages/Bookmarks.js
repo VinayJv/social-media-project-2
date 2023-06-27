@@ -10,8 +10,6 @@ export function Bookmarks() {
   const { theme, postData } = useDataContext();
 
     const bookmarkedPost = postData.filter(({isBookmarked})=>isBookmarked) ?? [];
-    console.log(bookmarkedPost);
-
   useEffect(() => {
     setTimeout(() => {
       setLoader(false);

@@ -64,7 +64,7 @@ export function Home() {
                                 <div>
                                     <label className="custom-input">
                                         <BiImages size={30}/>
-                                        <input type="file" multiple accept="image/*" onChange={imageChangeHandler}></input>
+                                        <input type="file" accept="image/*" onChange={imageChangeHandler}></input>
                                     </label>
                                     <AiOutlineSmile size={30}/>
                                 </div>

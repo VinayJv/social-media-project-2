@@ -301,8 +301,10 @@ input[type="file"]{
   width: fit-content;
   max-height: 24.5rem;
   margin-top: 6rem;
-  padding: 1rem;
-  overflow: hidden;
+  overflow: scroll;
+}
+.follow-user::-webkit-scrollbar {
+  width: 0px;
 }
 .follow-btn{
   border-radius: var(--border-radius);
