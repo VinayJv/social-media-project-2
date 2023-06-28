@@ -81,7 +81,6 @@ export function PostCard({ props: { _id, content, media, likes: { likeCount, lik
     }
 
     const postFormHandler = (event) => {
-        console.log(event);
         event.preventDefault();
         const userPost = {
             _id: uuid(),
