@@ -38,7 +38,7 @@ export const signupHandler = function (schema, request) {
       password,
       ...rest,
       followers: [],
-      following: [],
+      following: [username],
       bookmarks: [],
       userImage: "https://punchstick.com/wp-content/uploads/2017/12/default-user-image-300x300.png",
     };
@@ -69,6 +69,7 @@ export const loginHandler = function (schema, request) {
   const { username, password } = JSON.parse(request.requestBody);
   try {
     const foundUser = schema.users.findBy({ username: username });
+    foundUser.attrs.following = ["pranjalexplores", "maiz_julio", foundUser.attrs.username];
     if (!foundUser) {
       return new Response(
         404,

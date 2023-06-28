@@ -47,9 +47,9 @@ export function ContextWrapper({children}){
                 return {...state, isLoggedIn: true, foundUser: payload.createdUser};
             case "UPDATE_FOLLOWING_OF_USER":
                 return {...state , foundUser: {...state.foundUser, following: [...state.foundUser.following, payload]}};
-                case "REMOVE_FOLLOWING":
-                    const removeFollower = state.foundUser.following.filter((username)=> username !== payload);
-                    return {...state , foundUser: {...state.foundUser, following: removeFollower}};
+            case "REMOVE_FOLLOWING":
+                const removeFollower = state.foundUser.following.filter((username)=> username !== payload);
+                return {...state , foundUser: {...state.foundUser, following: removeFollower}};
             default:
                 return{...state};
         }

@@ -4,15 +4,16 @@ import { useEffect, useState } from "react";
 import { Loader } from "../component/Loader";
 import { BiImages } from "react-icons/bi";
 import { AiOutlineSmile } from "react-icons/ai";
-import { AllPosts } from "../component/AllPosts";
 import { formatDate } from "../backend/utils/authUtils";
 import { v4 as uuid } from "uuid";
 import { SuggestedUserCard } from "../component/SuggestedUserCard";
+import { FollowedPost } from "../component/FollowedPost";
 
 export function Home() {
     const [loader, setLoader] = useState(true);
-    const { theme, state, postData, setPostData } = useDataContext();
+    const { theme, state, postData, setPostData} = useDataContext();
     const [image,setImage] = useState({toggle: false, files:{} });
+    console.log(state);
 
     const postFormHandler = (event) => {
         event.preventDefault();
@@ -38,13 +39,13 @@ export function Home() {
 
     const imageChangeHandler = (event) => {
         setImage({toggle: true, files: event.target.files[0]});
-    };
+    }; 
 
     useEffect(() => {
         setTimeout(() => {
             setLoader(false);
         }, 700);
-    }, []);
+    }, [state]);
 
     return (
         <div className="main-page">
@@ -74,7 +75,7 @@ export function Home() {
                             </div>
                         </form>
                     </div>
-                    <AllPosts />
+                    <FollowedPost />
                 </div>
             </div>}
             <SuggestedUserCard />

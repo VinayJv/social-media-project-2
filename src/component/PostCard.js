@@ -8,7 +8,6 @@ import { AiOutlineDislike } from "react-icons/ai";
 import { PostComments } from "./PostComments";
 import { BsBookmark } from "react-icons/bs";
 import { BsBookmarkFill } from "react-icons/bs";
-import { MdVerified } from "react-icons/md";
 
 export function PostCard({ props: { _id, content, media, likes: { likeCount, likedBy, dislikedBy }, comments, username, isBookmarked }}) {
     const { theme, state, postData, setPostData, userData } = useDataContext();
