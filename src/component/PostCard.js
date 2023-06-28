@@ -8,9 +8,15 @@ import { AiOutlineDislike } from "react-icons/ai";
 import { PostComments } from "./PostComments";
 import { BsBookmark } from "react-icons/bs";
 import { BsBookmarkFill } from "react-icons/bs";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { AiOutlineEdit } from "react-icons/ai";
+import { BiImages } from "react-icons/bi";
+import { MdOutlineDeleteOutline } from "react-icons/md";
+import { v4 as uuid } from "uuid";
+import { formatDate } from "../backend/utils/authUtils";
 
 export function PostCard({ props: { _id, content, media, likes: { likeCount, likedBy, dislikedBy }, comments, username, isBookmarked }}) {
-    const { theme, state, postData, setPostData, userData } = useDataContext();
+    const { theme, state, postData, setPostData, userData, notify } = useDataContext();
     const [postedBy, setPostedBy] = useState({});
     const [likedByData, setLikedBy] = useState(likedBy);
     const [dislikedByData, setDislikedBy] = useState(dislikedBy);
@@ -18,6 +24,9 @@ export function PostCard({ props: { _id, content, media, likes: { likeCount, lik
     const [dislikeData, setDislikeData] = useState({dislikeCount: dislikedBy.length});
     const [showForm, setShowForm] = useState(false);
     const [commentsData,setCommentsData] = useState(comments);
+    const [editToggle, setEditToggle] = useState(false);
+    const [editForm,setEditForm] = useState(false);
+    const [image,setImage] = useState({toggle: false, files:{} });
     
     const findIndex = () => postData.findIndex((post)=>post._id === _id);
 
@@ -62,9 +71,42 @@ export function PostCard({ props: { _id, content, media, likes: { likeCount, lik
         setPostData([...postData],(postData[findIndex()].likes.dislikedBy = filteredArray));
     }
 
+    const deletePost = (event) => {
+        setPostData(postData.filter((post)=>post._id !== event.target.id));
+        notify("Post Deleted");
+    };
+
     const getUserData = (name) => {
         setPostedBy(() => userData.find((user) => user.username === name));
     }
+
+    const postFormHandler = (event) => {
+        console.log(event);
+        event.preventDefault();
+        const userPost = {
+            _id: uuid(),
+            content:
+              event.target.elements[0].value,
+            media: image.toggle ? window.URL.createObjectURL(image.files) : "",
+            likes: {
+              likeCount: 0,
+              likedBy: [],
+              dislikedBy: [],
+            },
+            comments: [],
+            username: state.foundUser.username,
+            createdAt: formatDate(),
+            updatedAt: formatDate(),
+          }
+          setPostData([...postData], (postData[findIndex()].content = userPost.content), (postData[findIndex()].media = userPost.media));
+          event.target.reset();
+          notify("Post Updated");
+          setEditForm(false);
+    };
+
+    const imageChangeHandler = (event) => {
+        setImage({toggle: true, files: event.target.files[0]});
+    }; 
 
     useEffect(() => {
         getUserData(username);
@@ -72,10 +114,18 @@ export function PostCard({ props: { _id, content, media, likes: { likeCount, lik
 
 
     return (<div className="post-container" style={{ backgroundColor: theme.themeColor2, boxShadow: theme.boxShadow }}>
+        
         <img src={postedBy?.userImage || state.foundUser.userImage} alt="" className="user-image"></img>
         <div className="post-inner-container">
-            <div style={{display: "flex", alignItems: "center", gap: "0.3rem"}}>
+            <div style={{display: "flex",justifyContent: "space-between", alignItems: "center", gap: "0.3rem"}}>
                 <p style={{ fontSize: "1.3rem" }}>{postedBy?.firstName || state.foundUser.name} {postedBy?.lastName || ""}</p>
+                {username === state.foundUser.username && <div style={{display: "flex", position: "relative", flexDirection: "column"}}>
+                    <BsThreeDotsVertical onClick={()=>setEditToggle(!editToggle)} size={20} className="reaction-icons"/>
+                    <div style={{display: editToggle ? "flex" : "none", backgroundColor: theme.themeColor2, boxShadow: theme.boxShadow, border: `1px solid ${theme.textColor}`}} className="edit-form-container">
+                        <div className="post-options" onClick={()=>{setEditForm(!editForm); setEditToggle(false)}}><AiOutlineEdit size={20}/>Edit</div>
+                        <div className="post-options" onClick={deletePost} id={_id}><MdOutlineDeleteOutline size={20} onClick={deletePost} id={_id}/>Delete</div>
+                    </div>
+                    </div>}
             </div>
             <p style={{ color: "gray" }}>@{username}</p>
             <p style={{ fontSize: "1.1rem", marginTop: "1rem" }}>{content}</p>
@@ -127,6 +177,24 @@ export function PostCard({ props: { _id, content, media, likes: { likeCount, lik
                 }}/>}
                 </div>
             </div>
+        {username === state.foundUser.username && <div style={{display: editForm ? "flex" : "none", marginTop: "1rem"}}>
+        <form className="form" onSubmit={postFormHandler} style={{marginLeft: "0"}}>
+                            <label htmlFor="post-message"> 
+                                <textarea id="post-message" type="text" required placeholder="Write something interesting..." defaultValue={postData[findIndex()].content} className="post-textarea"></textarea>
+                            </label>
+                            <div className="post-btn-container">
+                                <div>
+                                    <label className="custom-input">
+                                        <BiImages size={30}/>
+                                        <input type="file" accept="image/*" onChange={imageChangeHandler}></input>
+                                    </label>
+                                </div>
+                                <div>
+                                    <button type="submit" className="btn-style" style={{border:`2px solid ${theme.textColor}`, color: theme.textColor}}>SAVE</button>
+                                </div>
+                            </div>
+                        </form>
+                </div>}
         </div>
     </div>);
 }

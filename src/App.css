@@ -318,6 +318,34 @@ input[type="file"]{
   scale: 1.1;
   cursor: pointer;
 }
+.edit-form-container{
+  border-radius: var(--border-radius);
+  position: absolute;
+  top: 120%;
+  flex-direction: column;
+}
+.post-options{
+  border-radius: var(--border-radius);
+  display: flex;
+  gap: .2rem;
+  align-items: center;
+  padding: 0.5rem;
+}
+.post-options:first-child{
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.post-options:last-child{
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.post-options:hover{
+  cursor: pointer;
+  background-color: var(--color-highlight);
+  color: var(--color-highlight-2);
+}
 
 
 

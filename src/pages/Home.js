@@ -11,7 +11,7 @@ import { FollowedPost } from "../component/FollowedPost";
 
 export function Home() {
     const [loader, setLoader] = useState(true);
-    const { theme, state, postData, setPostData} = useDataContext();
+    const { theme, state, postData, setPostData, notify } = useDataContext();
     const [image,setImage] = useState({toggle: false, files:{} });
     console.log(state);
 
@@ -35,6 +35,7 @@ export function Home() {
           setPostData([userPost, ...postData]);
           event.target.reset();
           setImage({...image, toggle: false});
+          notify("Posted");
     };
 
     const imageChangeHandler = (event) => {

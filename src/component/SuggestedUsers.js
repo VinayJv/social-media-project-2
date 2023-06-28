@@ -1,15 +1,16 @@
 import { useDataContext } from "../context/dataContext";
-import { useState } from "react";
 
 export function SuggestedUser({data}){
-    const {theme, state:{foundUser: {following}}, dispatch } = useDataContext();
+    const {theme, state:{foundUser: {following}}, dispatch, notify } = useDataContext();
 
     const followUser = (event) => {
         if(event.target.value === "Follow"){
             dispatch({type:"UPDATE_FOLLOWING_OF_USER", payload:event.target.name});
+            notify(`Now Following @${event.target.name}`);
         }
         else{
             dispatch({type:"REMOVE_FOLLOWING", payload: event.target.name});
+            notify(`Removed @${event.target.name}`);
         }
     };
 
