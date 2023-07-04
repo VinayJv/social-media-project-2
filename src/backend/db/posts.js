@@ -58,6 +58,22 @@ export const posts = [
   {
     _id: uuid(),
     content:
+      "HAPPY BIRTHDAY LIVING THINGS!! THANK YOU FOR GIVING ME POWERLESS.",
+    media: "https://pbs.twimg.com/media/Fzj5cjNWAAI_5nS?format=jpg&name=large",
+    likes: {
+      likeCount: 29,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [{commentBy: "pranjalexplores", comment: "LP FOREVER !!!!"}],
+    username: "adarshbalika",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+    isBookmarked: false,
+  },
+  {
+    _id: uuid(),
+    content:
       "Cyclone Biparjoy perfecting its twister moves!🌀",
     media: "https://pbs.twimg.com/media/Fypb0mfXwAETjos?format=jpg&name=medium",
     likes: {
