@@ -34,7 +34,7 @@ export function Login() {
     useEffect(() => {
         setTimeout(() => {
           setLoader(false);
-        }, 500);
+        }, 2000);
       }, []);
 
     return (loader ? <Loader /> : <div className="login-container">

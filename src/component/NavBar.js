@@ -5,6 +5,7 @@ import { MdTravelExplore } from "react-icons/md";
 import { ToggleButton } from '../component/ToggleButton';
 import { AiOutlineSetting } from "react-icons/ai";
 import { BsBookmarkCheck } from "react-icons/bs";
+import { isMobile } from "react-device-detect";
 
 export function NavBar(){
     const {theme, setTheme, dispatch, notify} = useDataContext();
@@ -20,7 +21,7 @@ export function NavBar(){
 
     return(
     <div className='nav-bar' style={{borderRight:`1px solid ${theme.textColor}`}}>
-      <div>
+      <div className="nav-bar-inner">
         <img width="70" height="70" src="https://img.icons8.com/clouds/100/topic.png" alt="topic" style={{marginBottom:"5rem"}}/>
         <NavLink to="/home" className='nav-links' style={{color: theme.textColor}}>
           <AiOutlineHome size={25} color={theme.textColor}/>

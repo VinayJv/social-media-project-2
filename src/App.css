@@ -426,4 +426,20 @@ input[type="file"]{
   .App{
     width: 100%;
   }
+  .main-body{
+    width: 100%;
+  }
+  .login-container{
+    margin: 14vh auto;
+  }
+  .nav-bar {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  justify-content: space-between;
+  padding: 1rem;
+}
+  .follow-section-container{
+    display: none;
+  }
 }

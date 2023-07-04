@@ -3,6 +3,7 @@ import { getUserAll } from "../services/userServices";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getPost } from "../services/postServices";
+import {isMobile} from 'react-device-detect';
 
 const DataContext = createContext(null);
 
@@ -76,7 +77,7 @@ export function ContextWrapper({children}){
     });
 
     return(
-        <DataContext.Provider value={{ state, dispatch, theme, setTheme, postData, setPostData, notify, isToggled, setIsToggled, bookmarksData,setBookmarksData, userData, setUserData, image, setImage}}>
+        <DataContext.Provider value={{ state, dispatch, theme, setTheme, postData, setPostData, notify, isToggled, setIsToggled, bookmarksData,setBookmarksData, userData, setUserData, image, setImage, isMobile}}>
             {children}
         </DataContext.Provider>
     )

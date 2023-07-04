@@ -12,14 +12,14 @@ import { useNavigate } from "react-router";
 import { HiOutlineFilter } from "react-icons/hi";
 import { BiTrendingUp } from "react-icons/bi";
 import { BsCalendarDate } from "react-icons/bs"; 
+import { GiHamburgerMenu } from "react-icons/gi";
 
 export function Home() {
     const [loader, setLoader] = useState(true);
-    const { theme, state, postData, setPostData, notify, dispatch } = useDataContext();
+    const { theme, state, postData, setPostData, notify, dispatch, isMobile } = useDataContext();
     const [image,setImage] = useState({toggle: false, files:{} });
     const [filter, setShowFilter] = useState(false);
     const navigate = useNavigate();
-    console.log(state, postData);
 
     const postFormHandler = (event) => {
         event.preventDefault();
@@ -73,6 +73,7 @@ export function Home() {
             <NavBar></NavBar>
             {loader ? <Loader /> : <div className='main-body' style={{borderRight: `1px solid ${theme.textColor}`}}>
                 <div style={{backgroundColor:theme.themeColor2, borderBottom:`1px solid ${theme.textColor}`}} className="header-main-container">
+                    {isMobile && <GiHamburgerMenu size={30}/>}
                     <h1>Home</h1>
                     <div style={{display: "flex", position: "relative", flexDirection: "column"}}>
                         <HiOutlineFilter className="reaction-icons" size={25} onClick={showFilters}/>

@@ -1,9 +1,12 @@
 import { postSignUpData } from "../services/authService";
 import { useDataContext } from "../context/dataContext";
 import { useNavigate } from "react-router";
+import { useState, useEffect } from "react";
+import { Loader } from "../component/Loader";
 
 export function SignUp() {
     const { dispatch, notify } = useDataContext();
+    const [loader,setLoader] = useState(true);
     const navigate = useNavigate();
 
     const signUpFormHandler = async(event) => {
@@ -21,7 +24,13 @@ export function SignUp() {
         
     }
 
-    return (
+    useEffect(() => {
+        setTimeout(() => {
+          setLoader(false);
+        }, 500);
+      }, []);
+
+    return (loader ? <Loader /> :
         <div className="login-container">
             <div className="login-icon">
                 <img width="70" height="70" src="https://img.icons8.com/clouds/100/topic.png" alt="topic" /><span className="divider"></span><span style={{ fontSize: "2rem" }}>UTTER</span>
