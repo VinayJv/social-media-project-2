@@ -1,11 +1,13 @@
 import { useDataContext } from "../context/dataContext";
 import { postLoginData } from "../services/authService";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useState, useEffect } from "react";
+import { Loader } from "../component/Loader";
 import { useNavigate } from "react-router";
 
 export function Login() {
     const { dispatch, notify } = useDataContext();
+    const [loader,setLoader] = useState(true);
     const navigate = useNavigate();
 
     const formHandler = async(event) => {
@@ -29,24 +31,30 @@ export function Login() {
         navigate("/home");
     };
 
-    return (
-    <div className="login-container">
-        <div className="login-icon">
-            <img width="70" height="70" src="https://img.icons8.com/clouds/100/topic.png" alt="topic"/><span className="divider"></span><span style={{fontSize:"2rem"}}>UTTER</span>
+    useEffect(() => {
+        setTimeout(() => {
+          setLoader(false);
+        }, 500);
+      }, []);
+
+    return (loader ? <Loader /> : <div className="login-container">
+    <div className="login-icon">
+        <img width="70" height="70" src="https://img.icons8.com/clouds/100/topic.png" alt="topic"/><span className="divider"></span><span style={{fontSize:"2rem"}}>UTTER</span>
+    </div>
+    <h1>Sign in</h1>
+    <form className="login-form" onSubmit={formHandler}>
+        <div>
+            <label htmlFor="username"></label>
+            <input type="text" id="username" placeholder="Username" required className="input-style"></input>
         </div>
-        <h1>Sign in</h1>
-        <form className="login-form" onSubmit={formHandler}>
-            <div>
-                <label htmlFor="username"></label>
-                <input type="text" id="username" placeholder="Username" required className="input-style"></input>
-            </div>
-            <div>
-                <label htmlFor="password"></label>
-                <input type="password" id="password" placeholder="Password" className="input-style" required></input>
-            </div>
-            <button type="submit" className="btn-style">Sign In</button>
-        </form>
-            <button className="btn-style" onClick={guestLoginHandler}>Guest Login</button>
-            <p>Don't have an account? <span style={{textDecorationLine:"underline",cursor:"pointer"}} onClick={()=>navigate("/signup")}>Sign Up</span></p>
-    </div>)
+        <div>
+            <label htmlFor="password"></label>
+            <input type="password" id="password" placeholder="Password" className="input-style" required></input>
+        </div>
+        <button type="submit" className="btn-style">Sign In</button>
+    </form>
+        <button className="btn-style" onClick={guestLoginHandler}>Guest Login</button>
+        <p>Don't have an account? <span style={{textDecorationLine:"underline",cursor:"pointer"}} onClick={()=>navigate("/signup")}>Sign Up</span></p>
+</div>
+    );
 }

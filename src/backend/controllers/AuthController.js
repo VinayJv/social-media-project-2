@@ -41,6 +41,8 @@ export const signupHandler = function (schema, request) {
       following: [username],
       bookmarks: [],
       userImage: "https://punchstick.com/wp-content/uploads/2017/12/default-user-image-300x300.png",
+      bio: "I Love Utter",
+      url: "",
     };
     const createdUser = schema.users.create(newUser);
     const encodedToken = sign(

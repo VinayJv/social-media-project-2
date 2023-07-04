@@ -7,10 +7,15 @@ import { AiOutlineSetting } from "react-icons/ai";
 import { BsBookmarkCheck } from "react-icons/bs";
 
 export function NavBar(){
-    const {theme, setTheme} = useDataContext();
+    const {theme, setTheme, dispatch, notify} = useDataContext();
 
     const changeTheme = (isChecked) => {
         isChecked ? setTheme({themeColor: "rgb(21, 25, 29)", textColor: "rgba(199, 237, 230, 1)", themeColor2: "#2c3e50", boxShadow: "-2px 4px 10px black"}) : setTheme({themeColor: "#F9F7F7", textColor: "#112D4E",themeColor2: "#DBE2EF", boxShadow: "-2px 4px 5px #3F72AF"});
+      }
+
+      const logoutUser = () => {
+        dispatch({type: "LOGOUT_USER", payload: ""});
+        notify("Logged Out");
       }
 
     return(
@@ -33,6 +38,7 @@ export function NavBar(){
           <AiOutlineSetting size={25} color={theme.textColor}/>
           Settings
         </NavLink>
+          <button className="btn-style" style={{border:`2px solid ${theme.textColor}`, color: theme.textColor, backgroundColor: theme.themeColor2}} onClick={logoutUser}>Logout</button>
       </div>
       <div className='last-child'>
         <ToggleButton label="" onClick={changeTheme}></ToggleButton>

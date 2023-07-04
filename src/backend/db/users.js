@@ -15,6 +15,8 @@ export const users = [
     password: "adarshBalika123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    url: "https://utter-vj.netlify.app/login",
+    bio: "HUMBLE BEING",
   },
   {
     _id: uuid(),
@@ -25,6 +27,8 @@ export const users = [
     password: "gamingcovering123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    url: "",
+    bio: "Welcome to all gaming news in one place. Enjoy.",
   },
   {
     _id: uuid(),
@@ -35,6 +39,8 @@ export const users = [
     password: "sciencenews123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    url: "",
+    bio: "Covering the latest news in all fields of science.",
   },
   {
     _id: uuid(),
@@ -45,6 +51,8 @@ export const users = [
     password: "maiz_julio123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    url: "",
+    bio: "Enjoy the beauty of space.",
   },
   {
     _id: uuid(),
@@ -55,6 +63,8 @@ export const users = [
     password: "ignin123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    url: "",
+    bio: "The leading destination for gaming, entertainment and technology related stories.",
   },
   {
     _id: uuid(),
@@ -65,6 +75,8 @@ export const users = [
     password: "pranjalexplores123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    url: "",
+    bio: "Exploring the world beauty.",
   },
   {
     _id: uuid(),
@@ -75,5 +87,7 @@ export const users = [
     password: "WholesomeMeme123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
+    url: "",
+    bio: "We post memes, comics, wholesome stuff & anything we like.",
   },
 ];

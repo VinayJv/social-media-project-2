@@ -9,6 +9,8 @@ import { Settings } from './pages/Settings';
 import { SignUp } from './pages/SignUp';
 import { ToastContainer } from 'react-toastify';
 import { Bookmarks } from './pages/Bookmarks';
+import { SinglePost } from './pages/SinglePost';
+import { Profile } from './pages/Profile';
 
 function App() {
   const {theme} = useDataContext();
@@ -23,9 +25,11 @@ function App() {
           <Route path='/signup' element={<SignUp />}></Route>
 
           <Route path='/settings' element={<Auth><Settings /></Auth>}></Route>
+          <Route path='/post/:postId' element={<Auth><SinglePost /></Auth>}></Route>
           <Route path='/explore' element={<Auth><Explore /></Auth>}></Route>
           <Route path='/home' element={<Auth><Home /></Auth>}></Route>
           <Route path='/bookmarks' element={<Auth><Bookmarks /></Auth>}></Route>
+          <Route path='/user/:userId' element={<Auth><Profile /></Auth>}></Route>
         </Routes>
         <ToastContainer
         autoClose={1500}

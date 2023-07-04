@@ -8,12 +8,18 @@ import { formatDate } from "../backend/utils/authUtils";
 import { v4 as uuid } from "uuid";
 import { SuggestedUserCard } from "../component/SuggestedUserCard";
 import { FollowedPost } from "../component/FollowedPost";
+import { useNavigate } from "react-router";
+import { HiOutlineFilter } from "react-icons/hi";
+import { BiTrendingUp } from "react-icons/bi";
+import { BsCalendarDate } from "react-icons/bs"; 
 
 export function Home() {
     const [loader, setLoader] = useState(true);
-    const { theme, state, postData, setPostData, notify } = useDataContext();
+    const { theme, state, postData, setPostData, notify, dispatch } = useDataContext();
     const [image,setImage] = useState({toggle: false, files:{} });
-    console.log(state);
+    const [filter, setShowFilter] = useState(false);
+    const navigate = useNavigate();
+    console.log(state, postData);
 
     const postFormHandler = (event) => {
         event.preventDefault();
@@ -42,6 +48,20 @@ export function Home() {
         setImage({toggle: true, files: event.target.files[0]});
     }; 
 
+    const navigateToUser = (event) => {
+        event.stopPropagation();
+        navigate(`/user/${state.foundUser.username}`);
+    }
+
+    const showFilters = () => {
+        setShowFilter(!filter);
+    }
+
+    const setFilter = (event) => {
+        dispatch({type: "FILTER", payload: event.target.id});
+        setShowFilter(false);
+    };
+
     useEffect(() => {
         setTimeout(() => {
             setLoader(false);
@@ -53,11 +73,21 @@ export function Home() {
             <NavBar></NavBar>
             {loader ? <Loader /> : <div className='main-body' style={{borderRight: `1px solid ${theme.textColor}`}}>
                 <div style={{backgroundColor:theme.themeColor2, borderBottom:`1px solid ${theme.textColor}`}} className="header-main-container">
-                    <h1 style={{padding:"1rem"}}>Home</h1>
+                    <h1>Home</h1>
+                    <div style={{display: "flex", position: "relative", flexDirection: "column"}}>
+                        <HiOutlineFilter className="reaction-icons" size={25} onClick={showFilters}/>
+                        <div style={{display: filter ? "flex" : "none", backgroundColor: theme.themeColor2, boxShadow: theme.boxShadow, border: `1px solid ${theme.textColor}`}} className="edit-filter-container">
+                            <div className="post-options" id="Trending" onClick={setFilter}><BiTrendingUp size={20} style={{marginRight: "0.2rem"}}/>Trending</div>
+                            <div className="post-options" id="Date" onClick={setFilter}><BsCalendarDate size={20} style={{marginRight: "0.2rem"}}/>Date</div>
+                        </div>
+                        <div>
+                            
+                        </div>
+                    </div>
                 </div>
                 <div>
                     <div className="post-container" style={{backgroundColor: theme.themeColor2, boxShadow: theme.boxShadow, marginTop:"2rem"}}>
-                        <img src={state.foundUser.userImage} alt="user" className="user-image"></img>
+                        <img src={state.foundUser.userImage} alt="user" className="user-image" onClick={navigateToUser}></img>
                         <form className="form" onSubmit={postFormHandler}>
                             <label htmlFor="post-message"> 
                                 <textarea id="post-message" type="text" required placeholder="Write something interesting..." className="post-textarea"></textarea>

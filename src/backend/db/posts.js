@@ -90,7 +90,7 @@ export const posts = [
   {
     _id: uuid(),
     content:
-      "Netflix has revealed the first full trailer for The Witcher Season 3, which is coming to Netflix beginning on June 29. See the whole thing below.",
+      "Netflix has revealed the first full trailer for The Witcher Season 3, which is coming to Netflix beginning on June 29.",
     media: "https://sm.ign.com/t/ign_in/news/t/the-witche/the-witcher-season-3-gets-a-full-trailer-ahead-of-this-month_q9ph.1280.jpg",
     likes: {
       likeCount: 124,
@@ -131,6 +131,38 @@ export const posts = [
     },
     comments: [],
     username: "IGN_IN",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+    isBookmarked: false,
+  },
+  {
+    _id: uuid(),
+    content:
+      "Resident Evil 4 Remake Breaks the Franchise Record for Most Concurrent Players on Steam.",
+    media: "https://sm.ign.com/t/ign_in/screenshot/default/ss-0554b945aafc847d55f780f7968de00aafa968a3_et6q.1280.jpg",
+    likes: {
+      likeCount: 77,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [],
+    username: "GamingCovering",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+    isBookmarked: false,
+  },
+  {
+    _id: uuid(),
+    content:
+      "",
+    media: "https://pbs.twimg.com/media/FcM1jZ6WAAAT_7l?format=jpg",
+    likes: {
+      likeCount: 23,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [],
+    username: "WholesomeMeme",
     createdAt: formatDate(),
     updatedAt: formatDate(),
     isBookmarked: false,
