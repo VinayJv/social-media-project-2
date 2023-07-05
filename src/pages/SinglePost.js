@@ -23,10 +23,10 @@ export function SinglePost(){
         <div className="main-page">
       <NavBar></NavBar>
       {loader ? <Loader /> :
-        <div className='main-body' style={{borderRight: `1px solid ${theme.textColor}`}}>
+        <div className='main-body' style={{borderRight: isMobile ? "" : `1px solid ${theme.textColor}`}}>
           <div style={{ backgroundColor: theme.themeColor2,  borderBottom: `1px solid ${theme.textColor}`}} className="header-main-container">
           {isMobile && <GiHamburgerMenu size={30} className="reaction-icons" onClick={()=>setShowNav(!showNav)}/>}
-            <h1 style={{marginRight: isMobile ? "10.5rem" : ""}}>Post</h1>
+            <h1 style={{marginRight: isMobile ? "8.5rem" : ""}}>Post</h1>
           </div>
           <PostCard props={findPost} ShowComments/>
         </div>}

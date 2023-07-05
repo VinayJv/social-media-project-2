@@ -45,10 +45,10 @@ const usersPost = postData.filter((post)=>post.username === username);
         <div className="main-page">
       <NavBar></NavBar>
       {loader ? <Loader /> :
-        <div className='main-body' style={{borderRight: `1px solid ${theme.textColor}`}}>
+        <div className='main-body' style={{borderRight: isMobile ? "" : `1px solid ${theme.textColor}`}}>
           <div style={{ backgroundColor: theme.themeColor2,  borderBottom: `1px solid ${theme.textColor}`}} className="header-main-container">
           {isMobile && <GiHamburgerMenu size={30} className="reaction-icons" onClick={()=>setShowNav(!showNav)}/>}
-            <h1 style={{marginRight: isMobile ? "6.5rem" : ""}}>User Profile</h1>
+            <h1 style={{marginRight: isMobile ? "5.5rem" : ""}}>User Profile</h1>
           </div>
           <div className="profile-container" style={{ backgroundColor: theme.themeColor2, boxShadow: theme.boxShadow }}>
             <div className="profile-header">

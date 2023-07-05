@@ -38,7 +38,7 @@ export function Settings(){
         <div className='main-body' style={{borderRight: isMobile ? "" : `1px solid ${theme.textColor}`}}>
           <div style={{ backgroundColor: theme.themeColor2,  borderBottom: `1px solid ${theme.textColor}`}} className="header-main-container">
           {isMobile && <GiHamburgerMenu size={30} className="reaction-icons" onClick={()=>setShowNav(!showNav)}/>}
-            <h1 style={{marginRight: isMobile ? "8.5rem" : ""}}>Settings</h1>
+            <h1 style={{marginRight: isMobile ? "6.5rem" : ""}}>Settings</h1>
           </div>
           <div className="profile-container" style={{ backgroundColor: theme.themeColor2, boxShadow: theme.boxShadow }}>
             <div className="profile-header">
