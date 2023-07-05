@@ -15,7 +15,7 @@ export const users = [
     password: "adarshBalika123",
     createdAt: formatDate(),
     updatedAt: formatDate(),
-    url: "https://utter-vj.netlify.app/login",
+    url: "https://github.com/VinayJv/social-media-project-2",
     bio: "HIII THERE !!!",
   },
   {
