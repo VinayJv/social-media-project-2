@@ -19,7 +19,6 @@
   --border-radius: 8px;
   --shadow-basic: -2px 4px 10px black;
 }
-
 .App{
   display: flex;
   width: 80%;
