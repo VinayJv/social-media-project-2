@@ -430,7 +430,6 @@ input[type="file"]{
   }
   .App{
     width: 100%;
-    border: 1px solid beige;
   }
   .main-page{
     position: relative;
