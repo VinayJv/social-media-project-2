@@ -8,7 +8,7 @@ import { BsBookmarkCheck } from "react-icons/bs";
 import { isMobile } from "react-device-detect";
 
 export function NavBar(){
-    const {theme, setTheme, dispatch, notify} = useDataContext();
+    const {theme, setTheme, dispatch, notify, showNav, setShowNav} = useDataContext();
 
     const changeTheme = (isChecked) => {
         isChecked ? setTheme({themeColor: "rgb(21, 25, 29)", textColor: "rgba(199, 237, 230, 1)", themeColor2: "#2c3e50", boxShadow: "-2px 4px 10px black"}) : setTheme({themeColor: "#F9F7F7", textColor: "#112D4E",themeColor2: "#DBE2EF", boxShadow: "-2px 4px 5px #3F72AF"});
@@ -20,22 +20,22 @@ export function NavBar(){
       }
 
     return(
-    <div className='nav-bar' style={{borderRight:`1px solid ${theme.textColor}`}}>
+    <div className='nav-bar' style={{borderRight:`1px solid ${theme.textColor}`, left: showNav ? "0" : "-100%", backgroundColor: theme.themeColor}}>
       <div className="nav-bar-inner">
-        <img width="70" height="70" src="https://img.icons8.com/clouds/100/topic.png" alt="topic" style={{marginBottom:"5rem"}}/>
-        <NavLink to="/home" className='nav-links' style={{color: theme.textColor}}>
+        <img width="70" height="70" src="https://img.icons8.com/clouds/100/topic.png" alt="topic" style={{marginBottom:"5rem", display: isMobile ? "none" : ""}}/>
+        <NavLink to="/home" className='nav-links' style={{color: theme.textColor}} onClick={()=>setShowNav(false)}>
           <AiOutlineHome size={25} color={theme.textColor}/>
           Home
         </NavLink>
-        <NavLink to="/explore" className='nav-links' style={{color: theme.textColor}}>
+        <NavLink to="/explore" className='nav-links' style={{color: theme.textColor}} onClick={()=>setShowNav(false)}>
           <MdTravelExplore size={25} color={theme.textColor}/>
           Explore
         </NavLink>
-        <NavLink to="/bookmarks" className='nav-links' style={{color: theme.textColor}}>
+        <NavLink to="/bookmarks" className='nav-links' style={{color: theme.textColor}} onClick={()=>setShowNav(false)}>
           <BsBookmarkCheck size={25} color={theme.textColor}/>
           Bookmarks
         </NavLink>
-        <NavLink to="/settings" className='nav-links' style={{color: theme.textColor}}>
+        <NavLink to="/settings" className='nav-links' style={{color: theme.textColor}} onClick={()=>setShowNav(false)}>
           <AiOutlineSetting size={25} color={theme.textColor}/>
           Settings
         </NavLink>

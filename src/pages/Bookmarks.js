@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { Loader } from "../component/Loader";
 import { SuggestedUserCard } from "../component/SuggestedUserCard";
 import { PostCard } from "../component/PostCard";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 export function Bookmarks() {
   const [loader, setLoader] = useState(true);
-  const { theme, postData } = useDataContext();
+  const { theme, postData, setShowNav, showNav, isMobile } = useDataContext();
 
     const bookmarkedPost = postData.filter(({isBookmarked})=>isBookmarked) ?? [];
   useEffect(() => {
@@ -20,12 +21,11 @@ export function Bookmarks() {
     <div className="main-page">
       <NavBar></NavBar>
       {loader ? <Loader /> :
-        <div className='main-body' style={{borderRight: `1px solid ${theme.textColor}`}}>
+        <div className='main-body' style={{borderRight: isMobile ? "" : `1px solid ${theme.textColor}`}}>
           <div style={{ backgroundColor: theme.themeColor2,  borderBottom: `1px solid ${theme.textColor}`}} className="header-main-container">
-            <h1 style={{ padding: "1rem" }}>Bookmarks</h1>
+          {isMobile && <GiHamburgerMenu size={30} className="reaction-icons" onClick={()=>setShowNav(!showNav)}/>}
+            <h1 style={{marginRight: isMobile ? "6.5rem" : ""}}>Bookmarks</h1>
           </div>
-          <div style={{ marginTop: "2rem" }}></div>
-          {/* Bookmarks Data */}
           {bookmarkedPost.length === 0 && <h1 style={{ padding: "1rem", textAlign: "center" }}>No Post Bookmarked</h1>}
           {bookmarkedPost.map((post,index)=> <PostCard props={post} key={index}/>)}
         </div>}

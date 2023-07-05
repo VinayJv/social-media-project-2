@@ -17,7 +17,7 @@ import { formatDate } from "../backend/utils/authUtils";
 import { useNavigate } from "react-router";
 
 export function PostCard({ props: { _id, content, media, likes: { likeCount, likedBy, dislikedBy }, comments, username, isBookmarked }, ShowComments}) {
-    const { theme, state, postData, setPostData, userData, notify } = useDataContext();
+    const { theme, state, postData, setPostData, userData, notify, setShowNav } = useDataContext();
     const [postedBy, setPostedBy] = useState({});
     const [likedByData, setLikedBy] = useState(likedBy);
     const [dislikedByData, setDislikedBy] = useState(dislikedBy);
@@ -114,11 +114,13 @@ export function PostCard({ props: { _id, content, media, likes: { likeCount, lik
 
     const navigateToSinglePost = () => {
         navigate(`/post/${_id}`);
+        setShowNav(false);
     }
 
     const navigateToUser = (event) => {
         event.stopPropagation();
         navigate(`/user/${username}`);
+        setShowNav(false);
     }
 
     useEffect(() => {

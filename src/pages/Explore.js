@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { Loader } from "../component/Loader";
 import { AllPosts } from "../component/AllPosts";
 import { SuggestedUserCard } from "../component/SuggestedUserCard";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 export function Explore() {
   const [loader, setLoader] = useState(true);
-  const { theme } = useDataContext();
+  const { theme, isMobile, setShowNav, showNav } = useDataContext();
 
   useEffect(() => {
     setTimeout(() => {
@@ -19,11 +20,11 @@ export function Explore() {
     <div className="main-page">
       <NavBar></NavBar>
       {loader ? <Loader /> :
-        <div className='main-body' style={{borderRight: `1px solid ${theme.textColor}`}}>
+        <div className='main-body' style={{borderRight: isMobile ? "" : `1px solid ${theme.textColor}`}}>
           <div style={{ backgroundColor: theme.themeColor2,  borderBottom: `1px solid ${theme.textColor}`}} className="header-main-container">
-            <h1 style={{ padding: "1rem" }}>Explore</h1>
+          {isMobile && <GiHamburgerMenu size={30} className="reaction-icons" onClick={()=>setShowNav(!showNav)}/>}
+            <h1 style={{marginRight: isMobile ? "8.5rem" : ""}}>Explore</h1>
           </div>
-          <div style={{ marginTop: "2rem" }}></div>
           <AllPosts />
         </div>}
         <SuggestedUserCard />

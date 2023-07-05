@@ -415,6 +415,9 @@ input[type="file"]{
   border-radius: var(--border-radius);
   margin: 0 auto;
 }
+.profile-name{
+  font-size: 1.8rem;
+}
 
 
 
@@ -423,8 +426,14 @@ input[type="file"]{
 
 /* Media Queries */
 @media only screen and (max-width: 768px) {
+  html{
+    font-size: 14px;
+  }
   .App{
     width: 100%;
+  }
+  .main-page{
+  flex-direction: column;
   }
   .main-body{
     width: 100%;
@@ -433,13 +442,41 @@ input[type="file"]{
     margin: 14vh auto;
   }
   .nav-bar {
-  display: flex;
-  flex-direction: column;
-  width: fit-content;
-  justify-content: space-between;
-  padding: 1rem;
-}
+    position: absolute;
+    top: 4rem;
+    height: calc(100vh - 4rem);
+    transition: left ease-in-out .8s;
+  }
   .follow-section-container{
     display: none;
+  }
+  .post-container{
+    width: 90%;
+  }
+  .post-textarea {
+    width: 90%;
+  }
+  .user-image{
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .post-inner-container{
+    padding-left: 0.5rem;
+  }
+  .user-image-3 {
+    width: 4rem;
+    height: 4rem;
+  }
+  .profile-container{
+    width: 90%;
+  }
+  .profile-name{
+    font-size: 1.5rem;
+  }
+  .profile-data{
+    width: 90%;
+  }
+  .edit-profile-container{
+    width: 90%;
   }
 }

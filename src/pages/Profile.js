@@ -4,9 +4,10 @@ import { Loader } from "../component/Loader";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { PostCard } from "../component/PostCard";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 export function Profile(){
-    const {theme, userData, dispatch, notify, state:{foundUser: {following}}, postData, state} = useDataContext();
+    const {theme, userData, dispatch, notify, state:{foundUser: {following}}, postData, state, showNav,setShowNav, isMobile} = useDataContext();
     const [loader,setLoader] = useState(true);
     const { userId } = useParams();
 
@@ -46,15 +47,15 @@ const usersPost = postData.filter((post)=>post.username === username);
       {loader ? <Loader /> :
         <div className='main-body' style={{borderRight: `1px solid ${theme.textColor}`}}>
           <div style={{ backgroundColor: theme.themeColor2,  borderBottom: `1px solid ${theme.textColor}`}} className="header-main-container">
-            <h1 style={{ padding: "1rem" }}>User Profile</h1>
+          {isMobile && <GiHamburgerMenu size={30} className="reaction-icons" onClick={()=>setShowNav(!showNav)}/>}
+            <h1 style={{marginRight: isMobile ? "6.5rem" : ""}}>User Profile</h1>
           </div>
-          <div style={{ marginTop: "2rem" }}></div>
           <div className="profile-container" style={{ backgroundColor: theme.themeColor2, boxShadow: theme.boxShadow }}>
             <div className="profile-header">
               <img src={userImage} className="user-image-3" alt=""></img>
-              <div>
-                <p style={{fontSize: "2rem"}}>{firstName || state.foundUser.name} {lastName}</p>
-                <p style={{fontSize: "1.5rem", color: "gray"}}>@{username}</p>
+              <div className="profile-name">
+                <p >{firstName || state.foundUser.name} {lastName}</p>
+                <p style={{color: "gray"}}>@{username}</p>
               </div>
               {username !== state.foundUser.username && <button style={{border:`2px solid ${theme.textColor}`, color: theme.textColor, backgroundColor: theme.themeColor2}} className="follow-btn" value={alreadyFollowed() ? "Unfollow" : "Follow"} name={username} onClick={followUser}>{alreadyFollowed() ? "Unfollow" : "Follow"}</button>}
             </div>

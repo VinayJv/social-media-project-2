@@ -14,6 +14,7 @@ export function ContextWrapper({children}){
     const [userData,setUserData] = useState([]);
     const [isToggled, setIsToggled] = useState(true); // Theme Toggle
     const [image,setImage] = useState({toggle: false, files:{} });
+    const [showNav,setShowNav] = useState(false);
 
     const notify = (message) => {
         toast(message,{
@@ -77,7 +78,7 @@ export function ContextWrapper({children}){
     });
 
     return(
-        <DataContext.Provider value={{ state, dispatch, theme, setTheme, postData, setPostData, notify, isToggled, setIsToggled, bookmarksData,setBookmarksData, userData, setUserData, image, setImage, isMobile}}>
+        <DataContext.Provider value={{ state, dispatch, theme, setTheme, postData, setPostData, notify, isToggled, setIsToggled, bookmarksData,setBookmarksData, userData, setUserData, image, setImage, isMobile, showNav, setShowNav}}>
             {children}
         </DataContext.Provider>
     )
