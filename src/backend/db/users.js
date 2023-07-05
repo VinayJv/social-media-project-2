@@ -16,7 +16,7 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
     url: "https://utter-vj.netlify.app/login",
-    bio: "HUMBLE BEING",
+    bio: "HIII THERE !!!",
   },
   {
     _id: uuid(),

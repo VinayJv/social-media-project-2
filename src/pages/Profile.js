@@ -63,13 +63,13 @@ const usersPost = postData.filter((post)=>post.username === username);
               <div className="profile-data" style={{border:`2px solid ${theme.textColor}`, color: theme.textColor, backgroundColor: theme.themeColor2}}>
                 <div className="profile-data-flex">
                   <div className="profile-data-flex-2">
-                    <p>Following</p><span>{followers.length}</span>
+                    <p>Following</p><span>{username !== state.foundUser.username ? followers.length : following.length}</span>
                   </div>
                   <div className="profile-data-flex-2">
                     <p>Posts</p><span>{usersPost.length}</span>
                   </div>
                   <div className="profile-data-flex-2">
-                    <p>Followers</p><span>{following.length}</span>
+                    <p>Followers</p><span>{username !== state.foundUser.username ? following.length : followers.length}</span>
                   </div>
                 </div>
               </div>

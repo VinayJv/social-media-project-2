@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 
 /* Universals Selectors */
@@ -268,15 +269,11 @@ input[type="file"]{
 }
 .comment-form-container{
   position: absolute;
-  top: 110%;
-  width: 18rem;
-  max-height: 10rem;
+  top: 140%;
+  left: -300%;
   padding: 0.5rem;
   background-color: var(--color-highlight-2);
   border-radius: var(--border-radius);
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
 }
 .comment-form-container::-webkit-scrollbar {
   width: 0px;
@@ -293,6 +290,7 @@ input[type="file"]{
   border-radius: var(--border-radius);
   border: none;
   padding: 0.5rem;
+  margin-right: 0.4rem;
 }
 .comment-btn{
   padding: 0.4rem;
@@ -447,8 +445,13 @@ input[type="file"]{
     height: calc(100vh - 4rem);
     transition: left ease-in-out .8s;
   }
+  .nav-bar-inner > a {
+    margin-top: 1.5rem;
+  }
   .follow-section-container{
-    display: none;
+    position: absolute;
+    padding: 0;
+    transition: left ease-in-out .8s;
   }
   .post-container{
     width: 90%;
@@ -478,5 +481,19 @@ input[type="file"]{
   }
   .edit-profile-container{
     width: 90%;
+  }
+  .edit-filter-container{
+    top: 160%;
+    left: -100%;
+  }
+  .post-options{
+    gap: 0.5rem;
+    padding: 0.8rem;
+  }
+  .edit-form-container{
+  left: -200%;
+  }
+  .comment-form-container{
+    left: -800%;
   }
 }

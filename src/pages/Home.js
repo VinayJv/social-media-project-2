@@ -13,10 +13,11 @@ import { HiOutlineFilter } from "react-icons/hi";
 import { BiTrendingUp } from "react-icons/bi";
 import { BsCalendarDate } from "react-icons/bs"; 
 import { GiHamburgerMenu } from "react-icons/gi";
+import { AiOutlineUserAdd } from "react-icons/ai"; 
 
 export function Home() {
     const [loader, setLoader] = useState(true);
-    const { theme, state, postData, setPostData, notify, dispatch, isMobile, showNav, setShowNav } = useDataContext();
+    const { theme, state, postData, setPostData, notify, dispatch, isMobile, showNav, setShowNav, setShowUsers, showUsers } = useDataContext();
     const [image,setImage] = useState({toggle: false, files:{} });
     const [filter, setShowFilter] = useState(false);
     const navigate = useNavigate();
@@ -73,17 +74,17 @@ export function Home() {
             <NavBar></NavBar>
             {loader ? <Loader /> : <div className='main-body' style={{borderRight: isMobile ? "" : `1px solid ${theme.textColor}`}}>
                 <div style={{backgroundColor:theme.themeColor2, borderBottom:`1px solid ${theme.textColor}`}} className="header-main-container">
-                    {isMobile && <GiHamburgerMenu size={30} className="reaction-icons" onClick={()=>setShowNav(!showNav)}/>}
+                    {isMobile && <GiHamburgerMenu size={30} onClick={()=>setShowNav(!showNav)}/>}
                     <h1>Home</h1>
-                    <div style={{display: "flex", position: "relative", flexDirection: "column"}}>
-                        <HiOutlineFilter className="reaction-icons" size={25} onClick={showFilters}/>
+                    <div style={{display: "flex", position: "relative", gap: "0.5rem"}}>
+                        <HiOutlineFilter size={30} onClick={showFilters}/>
                         <div style={{display: filter ? "flex" : "none", backgroundColor: theme.themeColor2, boxShadow: theme.boxShadow, border: `1px solid ${theme.textColor}`}} className="edit-filter-container">
                             <div className="post-options" id="Trending" onClick={setFilter}><BiTrendingUp size={20} style={{marginRight: "0.2rem"}}/>Trending</div>
                             <div className="post-options" id="Date" onClick={setFilter}><BsCalendarDate size={20} style={{marginRight: "0.2rem"}}/>Date</div>
                         </div>
-                        <div>
-                            
-                        </div>
+                        {isMobile && <div style={{display: "flex", position: "relative", flexDirection: "column"}}>
+                            <AiOutlineUserAdd className="reaction-icons" size={30} onClick={()=>setShowUsers(!showUsers)}/>
+                        </div>}
                     </div>
                 </div>
                 <div>
