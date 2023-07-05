@@ -31,7 +31,7 @@ export function Bookmarks() {
             </div>}
           </div>
           {bookmarkedPost.length === 0 && <h1 style={{ padding: "1rem", textAlign: "center" }}>No Post Bookmarked</h1>}
-          {bookmarkedPost.map((post,index)=> <PostCard props={post} key={index}/>)}
+          {bookmarkedPost.length !== 0 && bookmarkedPost.map((post,index)=> <PostCard props={post} key={index}/>)}
         </div>}
         <SuggestedUserCard />
     </div>);
