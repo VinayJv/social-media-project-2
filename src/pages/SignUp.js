@@ -51,7 +51,7 @@ export function SignUp() {
                 </div>
                 <div>
                     <label htmlFor="password"></label>
-                    <input type="text" id="password" placeholder="Password" className="input-style" required></input>
+                    <input type="password" id="password" placeholder="Password" className="input-style" required></input>
                 </div>
                 <button type="submit" className="btn-style">Create Account</button>
             </form>
